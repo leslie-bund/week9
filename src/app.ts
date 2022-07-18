@@ -3,10 +3,19 @@ import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import mongoose from 'mongoose';
+import 'dotenv/config';
+import Debug from 'debug';
+const debug = Debug('week-9-node-task-sq011-poda-leslie-bund:server');
 
 
 import indexRouter from './routes/index';
-import usersRouter from './routes/users'
+import usersRouter from './routes/users';
+
+
+mongoose.connect(<string>process.env.MONGO_URI)
+  .then(() => debug('Connected to Database'))
+  .catch((err) => debug('Failed to Connect to Database', err));
 
 const app = express();
 

@@ -9,7 +9,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("../app"));
 const http_1 = __importDefault(require("http"));
-// var debug = require('debug')('week-9-node-task-sq011-poda-leslie-bund:server');
+require("dotenv/config");
 const debug_1 = __importDefault(require("debug"));
 const debug = (0, debug_1.default)('week-9-node-task-sq011-poda-leslie-bund:server');
 /**

@@ -6,8 +6,8 @@
 
 import app from '../app';
 import http from 'http';
-// var debug = require('debug')('week-9-node-task-sq011-poda-leslie-bund:server');
-import Debug from 'debug'
+import 'dotenv/config';
+import Debug from 'debug';
 const debug = Debug('week-9-node-task-sq011-poda-leslie-bund:server');
 
 /**
