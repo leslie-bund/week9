@@ -1,8 +1,81 @@
+
+:root {
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #393939;
+  --bs-dark: whitesmoke;
+}
+
+*, 
+*::after, 
+*::before {
+  box-sizing: border-box;
+}
+
+.darkmode {
+  --bs-dark: #262c2b;
+  --bs-secondary: #bfc1c3d2;
+  --bs-light: #f8f9fa;
+}
+
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+main{ 
+  height: 100vh;
 }
 
 a {
   color: #00B7FF;
+}
+
+.login-hero {
+  height: 85vh;
+}
+
+.bord {
+  border: 1px solid red;
+}
+
+.hero-text {
+  text-shadow: 2px 4px 3px var(--bs-secondary);
+  /* linear-gradient(var(--bs-secondary) 30%, transparent); */
+}
+
+#signup {
+  clear: right;
+}
+
+label.form-check-label {
+  line-height: 1.5rem;
+}
+
+.bg-dark {
+  background-color: var(--bs-dark)!important;
+}
+
+.text-light {
+  color: var(--bs-light)!important;
+}
+
+@media screen and (min-width: 991) {
+  .set-margin {
+    float: right;
+  }
+}
+
+fieldset {
+  box-shadow: inset 0px -0.1px 0.5px var(--bs-secondary);
+  border-radius: 0.3rem;
+}
+
+legend {
+  font-size: 0.7rem;
+  color: var(--bs-light);
 }

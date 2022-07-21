@@ -1,0 +1,35 @@
+#add-recipes.bg-transparent.pt-5.d-flex.flex-column.login-hero 
+    .card.bg-transparent
+        .card-header 
+            button.btn.btn-outline-primary(data-replace='recipes') ← back
+        .card-body.text-center.text-lightp-3
+            form.text-light(action="/recipes", method="post")
+                .form-floating.mb-3
+                    input.form-control.text-light.bg-transparent(type="text", id="recipeTitle", name="title", placeholder="Yam Fritata")
+                    label(for="recipeTitle") Title of recipe
+                .form-floating.mb-3
+                    select.form-select.text-light.bg-transparent(id="recipeType", name="meal_type", aria-label="meal type floating label")
+                        option
+                        option(value='breakfast') Breakfast
+                        option(value='lunch') Lunch
+                        option(value='supper') Dinner
+                        option(value='snack') Snack
+                    label(for="recipeType") Type of meal
+                .form-floating.mb-3
+                    select.form-select.text-light.bg-transparent(id="recipeDiff", name="difficulty_level", aria-label="Difficulty level floating label")
+                        option
+                        option(value='Advanced') Advanced
+                        option(value='Intermediate') Intermediate
+                        option(value='Beginner') Beginner
+                    label(for="recipeDiff") Difficulty
+                fieldset.mb-3.px-3.pb-3
+                    legend.text-light Add ingredients
+                    .ingreBoard.p-2.row
+                    .input-group
+                        span.input-group-text Name
+                        input.form-control.text-light.bg-transparent(type="text", id="name", placeholder="Ingredient")
+                        span.input-group-text $
+                        input.form-control.text-light.bg-transparent(type="text", id="price", placeholder="Price")
+                        button.btn.btn-sm.mx-1.btn-outline-primary(type="button", id="adder") Add
+                textarea.form-control.text-light.bg-transparent(rows="4", name="preparation", placeholder="Leave a preparation guide...", id="floatingTextarea")
+                input.btn.btn-outline-success(type="submit", value="Upload")

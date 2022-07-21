@@ -7,6 +7,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.server = void 0;
 const app_1 = __importDefault(require("../app"));
 const http_1 = __importDefault(require("http"));
 require("dotenv/config");
@@ -20,13 +21,13 @@ app_1.default.set('port', port);
 /**
  * Create HTTP server.
  */
-const server = http_1.default.createServer(app_1.default);
+exports.server = http_1.default.createServer(app_1.default);
 /**
  * Listen on provided port, on all network interfaces.
  */
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+exports.server.listen(port);
+exports.server.on('error', onError);
+exports.server.on('listening', onListening);
 /**
  * Normalize a port into a number, string, or false.
  */
@@ -70,7 +71,7 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 function onListening() {
-    var addr = server.address();
+    var addr = exports.server.address();
     var bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + (addr === null || addr === void 0 ? void 0 : addr.port);

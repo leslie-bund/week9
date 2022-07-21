@@ -1,0 +1,28 @@
+#recipes.bg-transparent.pt-5.d-flex.flex-column.login-hero 
+    .card.mb-4
+        .card-body
+            - if(user)
+                p.text-info.lead#fullname #{user.fullname}
+                small.text-muted#email #{user.email}
+                br
+                small.text-muted#joinDate #{new Date(user.createdAt).toDateString()}
+            - else 
+                p.text-info.lead#fullname
+                small.text-muted#email
+                br
+                small.text-muted#joinDate 
+    .card.bg-transparent
+        .card-header 
+            button.btn.btn-outline-primary(data-replace='add-recipes') Add new recipe
+        .card-body.text-center.text-secondary.display-3 some text
+        .card-footer 
+            nav.d-flex.justify-content-center.text-center(aria-label='Pagination links')
+                ul.pagination 
+                    li.page-item
+                        a.page-link.bg-transparent prev
+                    li.page-item
+                        a.page-link.bg-transparent 1
+                    li.page-item
+                        a.page-link.bg-transparent 2
+                    li.page-item
+                        a.page-link.bg-transparent next

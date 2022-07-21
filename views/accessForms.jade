@@ -1,0 +1,40 @@
+#access.d-flex.flex-column.justify-content-center.login-hero.d-none
+    h1.hero-text.text-center.display-3.text-secondary= title
+    p.text-center.text-warning.mb-4 Welcome to #{title}
+    .row 
+        .col-md-10.offset-md-1
+            .row
+                .text-center.text-lg-end.col-md-12.col-lg-6
+                    button.btn.btn-sm.btn-primary.mb-4.set-margin(type='button', data-bs-toggle='collapse', data-bs-target='#signup', aria-expanded='false', aria-controls='signup') Join Us
+                    .collapse(id='signup')
+                        .card.bg-transparent.shadow
+                            .card-body
+                                .p-1
+                                    form(action="/users/signup", name='signupForm', method="post")
+                                        .input-group.input-group-sm.mb-3
+                                            span.input-group-text @
+                                            input.bg-transparent.form-control.text-light(type='email', name='email', placeholder='user@example.com', aria-label='Sizing example input', aria-describedby='inputGroup-sizing-sm')
+                                        .input-group.input-group-sm.mb-3
+                                            span.input-group-text 🙂
+                                            input.bg-transparent.form-control.text-light(type='text', name='fullname', placeholder='John Doe', aria-label='Sizing example input', aria-describedby='inputGroup-sizing-sm')
+                                        .input-group.input-group-sm.mb-3
+                                            span.input-group-text 🔐
+                                            input.bg-transparent.form-control.text-light(type='password', name='password', placeholder='Password', aria-label='Sizing example input', aria-describedby='inputGroup-sizing-sm')
+                                        .input-group.input-group-sm.mb-3
+                                            span.input-group-text 🔏
+                                            input.bg-transparent.form-control.text-light(type='password', name='confirm_password', placeholder='Confirm Password', aria-label='Sizing example input', aria-describedby='inputGroup-sizing-sm')
+                                        input.btn.btn-sm.btn-success.set-margin(type="submit", value="Sign up")                
+                .text-center.text-lg-start.col-md-12.col-lg-6
+                    button.btn.btn-sm.btn-outline-info.mb-4(type='button', data-bs-toggle='collapse', data-bs-target='#login', aria-expanded='false', aria-controls='login') Resume  
+                    .collapse(id='login')
+                        .card.bg-transparent.shadow
+                            .card-body
+                                .p-1 
+                                    form(action="/users/login", name='loginForm', method="post") 
+                                        .input-group.input-group-sm.mb-3
+                                            span.input-group-text @
+                                            input.bg-transparent.form-control.text-light(type='email', name='email', placeholder='user@example.com', aria-label='Sizing example input', aria-describedby='inputGroup-sizing-sm')
+                                        .input-group.input-group-sm.mb-3
+                                            span.input-group-text 🔐
+                                            input.bg-transparent.form-control.text-light(type='password', name='password', placeholder='Password', aria-label='Sizing example input', aria-describedby='inputGroup-sizing-sm')
+                                        input.btn.btn-sm.btn-outline-success(type="submit", value="Login")

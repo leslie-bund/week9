@@ -11,6 +11,8 @@ const debug = Debug('week-9-node-task-sq011-poda-leslie-bund:server');
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
+import recipesRouter from './routes/recipes';
+import { authorize } from './utils';
 
 
 mongoose.connect(<string>process.env.MONGO_URI)
@@ -31,6 +33,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+// Insert validation middleware
+app.use(authorize);
+app.use('/recipes', recipesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
