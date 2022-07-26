@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.35% </span>
+                <span class="strong">86.27% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>42/51</span>
+                <span class='fraction'>44/51</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.35% </span>
+                <span class="strong">86.27% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>42/51</span>
+                <span class='fraction'>44/51</span>
             </div>
         
             
@@ -116,8 +116,7 @@
 <a name='L51'></a><a href='#L51'>51</a>
 <a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -150,20 +149,21 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 var __importDefault = (this &amp;&amp; this.__importDefault) || function (mod) {
@@ -175,7 +175,7 @@ const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
-const mongoose_1 = __importDefault(require("mongoose"));
+// import mongoose from 'mongoose';
 require("dotenv/config");
 const method_override_1 = __importDefault(require("method-override"));
 const debug_1 = __importDefault(require("debug"));
@@ -184,9 +184,9 @@ const index_1 = __importDefault(require("./routes/index"));
 const users_1 = __importDefault(require("./routes/users"));
 const recipes_1 = __importDefault(require("./routes/recipes"));
 const utils_1 = require("./utils");
-mongoose_1.default.connect(process.env.MONGO_URI)
-    .then(() =&gt; debug('Connected to Database'))
-    .catch((err) =&gt; debug('Failed to Connect to Database', err));
+// mongoose.connect(&lt;string&gt;process.env.MONGO_URI)
+//   .then(() =&gt; debug('Connected to Database'))
+//   .catch((err) =&gt; debug('Failed to Connect to Database', err));
 const app = (0, express_1.default)();
 // view engine setup
 app.set('views', path_1.default.join(__dirname, '../views'));
@@ -205,7 +205,7 @@ app.use('/recipes', recipes_1.default);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
 <span class="cstat-no" title="statement not covered" >    next((0, http_errors_1.default)(404));</span>
-<span class="cstat-no" title="statement not covered" >});</span>
+});
 // error handler
 app.use(function (err, req, res, next) {
 <span class="cstat-no" title="statement not covered" >    // set locals, only providing error in development</span>
@@ -214,7 +214,7 @@ app.use(function (err, req, res, next) {
 <span class="cstat-no" title="statement not covered" >    // render the error page</span>
 <span class="cstat-no" title="statement not covered" >    res.status(err.status || 500);</span>
 <span class="cstat-no" title="statement not covered" >    res.render('error');</span>
-<span class="cstat-no" title="statement not covered" >});</span>
+});
 exports.default = app;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -223,7 +223,7 @@ exports.default = app;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-26T14:18:04.565Z
+                at 2022-07-26T14:50:02.933Z
             </div>
         <script src="../prettify.js"></script>
         <script>

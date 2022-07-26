@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for dist/models/user.js</title>
+    <title>Code coverage report for src/models/recipe.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">dist/models</a> user.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/models</a> recipe.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.21% </span>
+                <span class="strong">73.58% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>30/46</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>39/53</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>2/4</span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.21% </span>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">73.58% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>30/46</span>
+                <span class='fraction'>39/53</span>
             </div>
         
             
@@ -109,9 +109,25 @@
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -145,70 +161,72 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
-var __importDefault = (this &amp;&amp; this.__importDefault) || function (mod) {
-    return (mod &amp;&amp; mod.__esModule) <span class="branch-0 cbranch-no" title="branch not covered" >? mod </span>: { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.userData = exports.validateUserLogin = exports.validateUserSignUp = void 0;
-const mongoose_1 = __importDefault(require("mongoose"));
-const joi_1 = __importDefault(require("joi"));
-const userSchema = new mongoose_1.default.Schema({
-    email: {
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import mongoose from "mongoose";
+import { userData } from "./user";
+import Joi from "joi";
+import { debug } from "console";
+ 
+const recipeSchema = new mongoose.Schema({
+    title: String,
+    meal_type: {
         type: String,
-        unique: true,
+        enum: ['breakfast', 'lunch', 'supper', 'snack'],
         required: true
     },
-    password: {
+    difficulty_level: {
         type: String,
+        enum: ['Beginner', 'Intermediate', 'Advanced'],
         required: true
     },
-    fullname: {
-        type: String,
-        required: true
-    },
-    recipes: {
-        type: Number,
-        default: 0
+    ingredients: [{
+        name: String,
+        price: String
+    }],
+    preparation: String,
+    creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
     }
 }, { timestamps: true });
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async function validateUserSignUp(user) {</span></span>
-<span class="cstat-no" title="statement not covered" >    const schema = joi_1.default.object({</span>
-<span class="cstat-no" title="statement not covered" >        email: joi_1.default.string().email().required(),</span>
-<span class="cstat-no" title="statement not covered" >        password: joi_1.default.string().pattern(new RegExp('[a-zA-Z0-9]{3,30}$')).required(),</span>
-<span class="cstat-no" title="statement not covered" >        confirm_password: joi_1.default.ref('password'),</span>
-<span class="cstat-no" title="statement not covered" >        fullname: joi_1.default.string().required()</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >    return schema.validate(user);</span>
+&nbsp;
+recipeSchema.post('save', async function(doc, next){
+    const rec = await userData.findById(doc.creator);
+    if(rec) {
+        rec.recipes =  rec.recipes + 1;
+    }
+    rec<span class="branch-0 cbranch-no" title="branch not covered" >?.s</span>ave();
+})
+&nbsp;
+export <span class="fstat-no" title="function not covered" >async function validateRecipe(recipe: recipe) {</span>
+<span class="cstat-no" title="statement not covered" >    const schema = Joi.object({</span>
+<span class="cstat-no" title="statement not covered" >        title: Joi.string().required(),</span>
+<span class="cstat-no" title="statement not covered" >        meal_type: Joi.string().valid('breakfast','lunch', 'supper', 'snack').required(),</span>
+<span class="cstat-no" title="statement not covered" >        difficulty_level: Joi.string().valid('Beginner', 'Intermediate','Advanced').required(),</span>
+<span class="cstat-no" title="statement not covered" >        ingredients: Joi.array().items(</span>
+<span class="cstat-no" title="statement not covered" >            Joi.object({</span>
+<span class="cstat-no" title="statement not covered" >                name: Joi.string().required(),</span>
+<span class="cstat-no" title="statement not covered" >                price: Joi.string().required()</span>
+<span class="cstat-no" title="statement not covered" >            })</span>
+<span class="cstat-no" title="statement not covered" >        ),</span>
+<span class="cstat-no" title="statement not covered" >        preparation: Joi.string().required()</span>
+<span class="cstat-no" title="statement not covered" >    })</span>
+<span class="cstat-no" title="statement not covered" >    return schema.validate(recipe);</span>
 <span class="cstat-no" title="statement not covered" >}</span>
-exports.validateUserSignUp = validateUserSignUp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async function validateUserLogin(user) {</span></span>
-<span class="cstat-no" title="statement not covered" >    const schema = joi_1.default.object({</span>
-<span class="cstat-no" title="statement not covered" >        email: joi_1.default.string().email().required(),</span>
-<span class="cstat-no" title="statement not covered" >        password: joi_1.default.string().pattern(new RegExp('[a-zA-Z0-9]{3,30}$')).required()</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >    return schema.validate(user);</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-exports.validateUserLogin = validateUserLogin;
-exports.userData = mongoose_1.default.model('user', userSchema);
-&nbsp;</pre></td></tr></table></pre>
+&nbsp;
+export const recipeData = mongoose.model('recipe', recipeSchema);</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-26T14:50:02.933Z
+                at 2022-07-26T15:49:36.900Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

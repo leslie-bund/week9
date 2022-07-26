@@ -3,7 +3,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 import 'dotenv/config';
 import methodOverride from 'method-override';
 import Debug from 'debug';
@@ -15,9 +15,9 @@ import usersRouter from './routes/users';
 import recipesRouter from './routes/recipes';
 import { authorize } from './utils';
 
-mongoose.connect(<string>process.env.MONGO_URI)
-  .then(() => debug('Connected to Database'))
-  .catch((err) => debug('Failed to Connect to Database', err));
+// mongoose.connect(<string>process.env.MONGO_URI)
+//   .then(() => debug('Connected to Database'))
+//   .catch((err) => debug('Failed to Connect to Database', err));
 
 const app = express();
 

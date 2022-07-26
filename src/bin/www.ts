@@ -9,6 +9,12 @@ import http from 'http';
 import 'dotenv/config';
 import Debug from 'debug';
 const debug = Debug('week-9-node-task-sq011-poda-leslie-bund:server');
+import mongoose from 'mongoose';
+
+
+mongoose.connect(<string>process.env.MONGO_URI)
+.then(() => debug('Connected to Database'))
+.catch((err) => debug('Failed to Connect to Database', err));
 
 /**
  * Get port from environment and store in Express.

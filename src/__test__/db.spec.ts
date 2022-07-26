@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
-const { MongoMemoryServer } = require('mongodb-memory-server');
-const { userData } = require('../../dist/models/user');
-const { recipeData } = require('../../dist/models/recipe');
+import mongoose from 'mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import { userData } from '../models/user';
+import { recipeData } from '../models/recipe';
 
 require('dotenv').config()
 
-// const app = require('../../dist/app');
+import app from '../app';
 // const jwt = require('jsonwebtoken');
-const request = require('supertest');
+import request from 'supertest';
 
 
 const testUser = {
@@ -30,7 +30,7 @@ const testRecipe = {
 }
 
 const testLogin = {
-  email: 'ikeoluwa@decagon.com',
+  email: 'ikeoluwa@gmail.com',
   password: '00000'
 }
 
@@ -66,7 +66,7 @@ describe('Single MongoMemoryServer', () => {
     it('User email remains unique', async () => {
         try {
             await userData.create(testUser)
-        } catch (error) {
+        } catch (error: any) {
             const { name, code } = error;
             expect(name).toEqual('MongoServerError');
             expect(code).toBe(11000);
@@ -78,7 +78,7 @@ describe('Single MongoMemoryServer', () => {
       
       it('Recipe gets created', async () => {
         const user = await userData.findOne(testUser, { _id: 1 });
-        const recipe = await recipeData.create({...testRecipe, creator: user._id});
+        const recipe = await recipeData.create({...testRecipe, creator: user?._id});
         expect(recipe).toBeTruthy();
         expect(recipe._id).toBeDefined();
     });
@@ -91,32 +91,60 @@ describe('Single MongoMemoryServer', () => {
   })
 
 
-  // describe('Testing Signup and Login routes', () => {
-  //   test('User signs up', async () => {
-  //       let response = await request(app)
-  //           .post('/users/signup')
-  //           .send(testUser2)
-  //       expect(response.status).toBe(200);
-  //       expect(response.header).toHaveProperty('set-cookie');
-  //   })
+  describe('Testing Signup, Login and Log-out routes', () => {
+    test('User signs up', async () => {
+        let response = await request(app)
+            .post('/users/signup')
+            .send(testUser2)
+        expect(response.status).toBe(200);
+        expect(response.body.status).toEqual('ok');
+    })
 
 
-  //   test('User Logins in with credentials in mock DB', async () => {
-  //       let response = await request(app)
-  //           .post('/users/login')
-  //           .send(testLogin)
-  //       expect(response.status).toBe(301);
-  //       expect(response.header).toHaveProperty('set-cookie');
-  //   })
-  // })
+    test('User Logins in with credentials in mock DB', async () => {
+        let response = await request(app)
+            .post('/users/login')
+            .send(testLogin)
+        expect(response.status).toBe(200);
+        expect(response.body.status).toEqual('ok');
+    })
+  })
 
-  // describe("Handles routes that don\'t need auth", () => {
-  //   test('Landing page returns status 200', async () => {
-  //       await request(app).get('/').expect(200);
-  //   })
-  //   test('Logout page returns status 200', async () => {
-  //       let response = await request(app).get('/user/logout');
-  //       expect(response.status).not.toBe(404);
-  //   })
-  // })
+  describe("Handles routes that don\'t need auth", () => {
+    test('Landing page returns status 200', async () => {
+        await request(app).get('/').expect(200);
+    })
+    test('Logout page returns status 200', async () => {
+        let response = await request(app).get('/users/logout');
+        expect(response.status).not.toBe(404);
+        expect(response.redirect).toBe(true);
+    })
+  })
+
+
+describe('Recipe Routes', () => {
+  beforeEach(async ()=>{
+      await request(app).post('/user/login').send(testLogin)
+  })
+  it('Should get the recipe page if not signed in', async () => {
+      const res = await request(app).get('/recipes')
+      expect(res.status).toBe(500);
+  })
+  it('Should not add a new recipe if user is unauthorized', async () => {
+      const res = await request(app).post('/recipes').send(testRecipe)
+      expect(res).not.toBe(302);
+  })
+  it('Should not get the recipe to be modified if id not provided', async () => {
+      const res = await request(app).get('/recipes/:recipeId')
+      expect(res).not.toBe(200);
+  })
+  it('Should not update if not signed in', async () => {
+      const res = await request(app).put('/recipes/:recipeId')
+      expect(res).not.toBe(200);
+  })
+  it('Should not update if not signed in', async () => {
+      const res = await request(app).delete('/recipes/:recipeId')
+      expect(res).not.toBe(200);
+  })
+})
 });
