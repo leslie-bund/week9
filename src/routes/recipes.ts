@@ -1,6 +1,6 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { HttpError } from 'http-errors';
-import { getAllRecipes, addNewRecipe } from '../controllers/recipe';
+import { getAllRecipes, addNewRecipe, deleteRecipe, getOneRecipe, upDateOneRecipe } from '../controllers/recipe';
 import Debug from 'debug';
 const debug = Debug('week-9-node-task-sq011-poda-leslie-bund:server');
 
@@ -13,19 +13,13 @@ router.get('/', getAllRecipes);
 router.post('/', addNewRecipe)
 
 /* GET particular recipe */
-router.get('/:recipeId', function(req ,res) {
-    res.send('Respond with a resource');
-})
+router.get('/:recipeId', getOneRecipe)
 
 /* PUT update a recipe */
-router.put('/:recipeId', function(req, res) {
-    res.send('Respond with a resource');
-})
+router.put('/:recipeId', upDateOneRecipe)
 
 /* DELETE a recipe */
-router.delete('/:recipeId', function(req, res) {
-    res.send('Respond with a resource');
-})
+router.delete('/:recipeId', deleteRecipe)
 
 
 router.use(function(err: HttpError, req: Request, res: Response, next: NextFunction) {

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/24</span>
+                <span class='fraction'>20/32</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/24</span>
+                <span class='fraction'>20/32</span>
             </div>
         
             
@@ -87,7 +87,19 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -110,7 +122,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 var __importDefault = (this &amp;&amp; this.__importDefault) || function (mod) {
     return <span class="branch-0 cbranch-no" title="branch not covered" >(mod &amp;&amp; mod.__esModule) ? mod : {</span> "default": mod };
@@ -125,16 +141,24 @@ router.post('/signup', user_1.signUpUser);
 router.post('/login', user_1.loginUser);
 /* GET user's to Logout. */
 router.get('/logout', user_1.logout);
+// catch 404 and forward to error handler
+// router.use(function(req, res, next) {
+//   next(createError(404));
+// });
 router.use(function (err, req, res, next) {
 <span class="cstat-no" title="statement not covered" >    // set locals, only providing error in development</span>
-<span class="cstat-no" title="statement not covered" >    res.locals.message = err.message;</span>
+<span class="cstat-no" title="statement not covered" >    res.locals.message = err;</span>
 <span class="cstat-no" title="statement not covered" >    res.locals.error = req.app.get('env') === 'development' ? err : {};</span>
 <span class="cstat-no" title="statement not covered" >    // render the error page</span>
-<span class="cstat-no" title="statement not covered" >    res.status(err.status || 500);</span>
-<span class="cstat-no" title="statement not covered" >    res.render('index', { title: 'Leslie\'s Cook-Book', page: 'access' });</span>
+<span class="cstat-no" title="statement not covered" >    res.status(err.status || 302);</span>
+<span class="cstat-no" title="statement not covered" >    res.json({ error: err });</span>
+<span class="cstat-no" title="statement not covered" >    // res.render('index', { title: 'Leslie\'s Cook-Book', page: 'access' });</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
 <span class="cstat-no" title="statement not covered" >});</span>
 exports.default = router;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function createError(arg0) {</span></span>
+<span class="cstat-no" title="statement not covered" >    throw new Error('Function not implemented.');</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -142,7 +166,7 @@ exports.default = router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-21T22:51:54.005Z
+                at 2022-07-26T14:18:04.565Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

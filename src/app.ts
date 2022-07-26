@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import 'dotenv/config';
+import methodOverride from 'method-override';
 import Debug from 'debug';
 const debug = Debug('week-9-node-task-sq011-poda-leslie-bund:server');
 
@@ -13,7 +14,6 @@ import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 import recipesRouter from './routes/recipes';
 import { authorize } from './utils';
-
 
 mongoose.connect(<string>process.env.MONGO_URI)
   .then(() => debug('Connected to Database'))
@@ -30,6 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -55,3 +56,4 @@ app.use(function(err: HttpError, req: Request, res: Response, next: NextFunction
 });
 
 export default app;
+

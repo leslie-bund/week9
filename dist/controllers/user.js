@@ -36,8 +36,9 @@ async function signUpUser(req, res, next) {
     }
     catch (error) {
         // 
-        debug('Signup Validation Error: ', error);
-        next(error);
+        debug('Signup Validation Error: ', error === null || error === void 0 ? void 0 : error.message);
+        res.json({ error: error === null || error === void 0 ? void 0 : error.message });
+        // next(error)
     }
 }
 exports.signUpUser = signUpUser;
@@ -50,6 +51,7 @@ async function loginUser(req, res, next) {
             .lean()
             .exec();
         if (!userFromDb) {
+            // res.locals.message = 'Email is wrong, Please check again';
             throw new Error('Email is wrong, Please check again');
         }
         const match = await (0, utils_1.verifyPass)(value.password, userFromDb === null || userFromDb === void 0 ? void 0 : userFromDb.password);
@@ -64,14 +66,15 @@ async function loginUser(req, res, next) {
         return;
     }
     catch (error) {
-        debug('Login Validation Error: ', error);
-        next(error);
+        debug('Login Validation Error: ', error === null || error === void 0 ? void 0 : error.message);
+        res.json({ error: error === null || error === void 0 ? void 0 : error.message });
+        // next(error);
     }
 }
 exports.loginUser = loginUser;
 async function logout(req, res) {
     res.clearCookie('authorization');
-    res.status(200).send('User Logged out');
+    res.status(200).redirect('/');
     return;
 }
 exports.logout = logout;

@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
+import { userData } from "./user";
 import Joi from "joi";
-
+import { debug } from "console";
+ 
 const recipeSchema = new mongoose.Schema({
     title: String,
     meal_type: {
@@ -23,6 +25,14 @@ const recipeSchema = new mongoose.Schema({
         required: true,
     }
 }, { timestamps: true });
+
+recipeSchema.post('save', async function(doc, next){
+    const rec = await userData.findById(doc.creator);
+    if(rec) {
+        rec.recipes =  rec.recipes + 1;
+    }
+    rec?.save();
+})
 
 export async function validateRecipe(recipe: recipe) {
     const schema = Joi.object({

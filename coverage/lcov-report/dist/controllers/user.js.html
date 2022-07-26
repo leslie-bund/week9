@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">18.18% </span>
+                <span class="strong">17.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/77</span>
+                <span class='fraction'>14/80</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">18.18% </span>
+                <span class="strong">17.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/77</span>
+                <span class='fraction'>14/80</span>
             </div>
         
             
@@ -140,7 +140,10 @@
 <a name='L75'></a><a href='#L75'>75</a>
 <a name='L76'></a><a href='#L76'>76</a>
 <a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -182,7 +185,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -255,8 +261,9 @@ const debug = (0, debug_1.default)('week-9-node-task-sq011-poda-leslie-bund:serv
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >    catch (error) {</span>
 <span class="cstat-no" title="statement not covered" >        // </span>
-<span class="cstat-no" title="statement not covered" >        debug('Signup Validation Error: ', error);</span>
-<span class="cstat-no" title="statement not covered" >        next(error);</span>
+<span class="cstat-no" title="statement not covered" >        debug('Signup Validation Error: ', error === null || error === void 0 ? void 0 : error.message);</span>
+<span class="cstat-no" title="statement not covered" >        res.json({ error: error === null || error === void 0 ? void 0 : error.message });</span>
+<span class="cstat-no" title="statement not covered" >        // next(error)</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 exports.signUpUser = signUpUser;
@@ -269,6 +276,7 @@ exports.signUpUser = signUpUser;
 <span class="cstat-no" title="statement not covered" >            .lean()</span>
 <span class="cstat-no" title="statement not covered" >            .exec();</span>
 <span class="cstat-no" title="statement not covered" >        if (!userFromDb) {</span>
+<span class="cstat-no" title="statement not covered" >            // res.locals.message = 'Email is wrong, Please check again';</span>
 <span class="cstat-no" title="statement not covered" >            throw new Error('Email is wrong, Please check again');</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
 <span class="cstat-no" title="statement not covered" >        const match = await (0, utils_1.verifyPass)(value.password, userFromDb === null || userFromDb === void 0 ? void 0 : userFromDb.password);</span>
@@ -283,14 +291,15 @@ exports.signUpUser = signUpUser;
 <span class="cstat-no" title="statement not covered" >        return;</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >    catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >        debug('Login Validation Error: ', error);</span>
-<span class="cstat-no" title="statement not covered" >        next(error);</span>
+<span class="cstat-no" title="statement not covered" >        debug('Login Validation Error: ', error === null || error === void 0 ? void 0 : error.message);</span>
+<span class="cstat-no" title="statement not covered" >        res.json({ error: error === null || error === void 0 ? void 0 : error.message });</span>
+<span class="cstat-no" title="statement not covered" >        // next(error);</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 exports.loginUser = loginUser;
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async function logout(req, res) {</span></span>
 <span class="cstat-no" title="statement not covered" >    res.clearCookie('authorization');</span>
-<span class="cstat-no" title="statement not covered" >    res.status(200).send('User Logged out');</span>
+<span class="cstat-no" title="statement not covered" >    res.status(200).redirect('/');</span>
 <span class="cstat-no" title="statement not covered" >    return;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 exports.logout = logout;
@@ -301,7 +310,7 @@ exports.logout = logout;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-21T22:51:54.005Z
+                at 2022-07-26T14:18:04.565Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

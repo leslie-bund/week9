@@ -12,13 +12,21 @@ router.post('/signup', user_1.signUpUser);
 router.post('/login', user_1.loginUser);
 /* GET user's to Logout. */
 router.get('/logout', user_1.logout);
+// catch 404 and forward to error handler
+// router.use(function(req, res, next) {
+//   next(createError(404));
+// });
 router.use(function (err, req, res, next) {
     // set locals, only providing error in development
-    res.locals.message = err.message;
+    res.locals.message = err;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     // render the error page
-    res.status(err.status || 500);
-    res.render('index', { title: 'Leslie\'s Cook-Book', page: 'access' });
+    res.status(err.status || 302);
+    res.json({ error: err });
+    // res.render('index', { title: 'Leslie\'s Cook-Book', page: 'access' });
     return;
 });
 exports.default = router;
+function createError(arg0) {
+    throw new Error('Function not implemented.');
+}

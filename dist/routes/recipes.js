@@ -13,17 +13,11 @@ router.get('/', recipe_1.getAllRecipes);
 /* POST new recipe */
 router.post('/', recipe_1.addNewRecipe);
 /* GET particular recipe */
-router.get('/:recipeId', function (req, res) {
-    res.send('Respond with a resource');
-});
+router.get('/:recipeId', recipe_1.getOneRecipe);
 /* PUT update a recipe */
-router.put('/:recipeId', function (req, res) {
-    res.send('Respond with a resource');
-});
+router.put('/:recipeId', recipe_1.upDateOneRecipe);
 /* DELETE a recipe */
-router.delete('/:recipeId', function (req, res) {
-    res.send('Respond with a resource');
-});
+router.delete('/:recipeId', recipe_1.deleteRecipe);
 router.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;

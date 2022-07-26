@@ -16,6 +16,7 @@
     "jade": "~1.11.0",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
     "mongoose": "^6.4.5",
     "morgan": "~1.9.1"
   },
@@ -29,6 +30,7 @@
     "@types/jest": "^28.1.6",
     "@types/joi": "^17.2.3",
     "@types/jsonwebtoken": "^8.5.8",
+    "@types/method-override": "^0.0.32",
     "@types/mongodb-memory-server": "^2.3.0",
     "@types/mongoose": "^5.11.97",
     "@types/morgan": "^1.9.3",

@@ -7,7 +7,6 @@ import { userData } from './models/user';
 import Debug from 'debug';
 const debug = Debug('week-9-node-task-sq011-poda-leslie-bund:server');
 
-
 const secretKey = process.env.JWT_SECRET_KEY;
 
 export async function hashPassword (pass: string) {

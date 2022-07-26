@@ -19,6 +19,10 @@ const userSchema = new mongoose_1.default.Schema({
     fullname: {
         type: String,
         required: true
+    },
+    recipes: {
+        type: Number,
+        default: 0
     }
 }, { timestamps: true });
 async function validateUserSignUp(user) {

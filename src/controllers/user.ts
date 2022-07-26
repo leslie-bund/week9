@@ -16,14 +16,14 @@ export async function signUpUser(req: Request, res: Response, next: NextFunction
         const { password, ...info } = user.toJSON()
         const token = await authenticate(JSON.parse(JSON.stringify(info)));
         res.cookie('authorization', token, { httpOnly: true });
-
         // Send User to dashboard
         res.status(200).json({status: "ok", data: info, page: 'recipes'});
         return;
-    } catch (error) {
+    } catch (error: any) {
         // 
-        debug('Signup Validation Error: ', error);
-        next(error)
+        debug('Signup Validation Error: ', error?.message);
+        res.json({ error: error?.message });
+        // next(error)
     }
 }
 
@@ -36,6 +36,7 @@ export async function loginUser(req: Request, res: Response, next: NextFunction)
                                 .lean()
                                 .exec();
         if(!userFromDb) {
+            // res.locals.message = 'Email is wrong, Please check again';
             throw new Error('Email is wrong, Please check again');
         }
         const match = await verifyPass(value.password, <string>userFromDb?.password);
@@ -50,14 +51,15 @@ export async function loginUser(req: Request, res: Response, next: NextFunction)
         // Send User to dashboard
         res.status(200).json({status: "ok", data: info, page: 'recipes'});
         return;
-    } catch (error) {
-        debug('Login Validation Error: ', error);
-        next(error);
+    } catch (error: any) {
+        debug('Login Validation Error: ', error?.message);
+        res.json({ error: error?.message });
+        // next(error);
     }
 }
 
 export async function logout (req: Request, res: Response) {
     res.clearCookie('authorization');
-    res.status(200).send('User Logged out');
+    res.status(200).redirect('/');
     return;
 }

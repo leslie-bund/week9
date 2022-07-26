@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
     fullname: {
         type: String,
         required: true
+    }, 
+    recipes: {
+        type: Number,
+        default: 0
     }
 }, { timestamps: true })
 

@@ -1,5 +1,5 @@
-#recipes.bg-transparent.pt-5.d-flex.flex-column.login-hero 
-    .card.mb-4
+#recipes.bg-transparent.pt-5.d-flex.flex-column.login-hero.d-none
+    .card.mb-4.bg-transparent
         .card-body
             - if(user)
                 p.text-info.lead#fullname #{user.fullname}
@@ -12,17 +12,10 @@
                 br
                 small.text-muted#joinDate 
     .card.bg-transparent
-        .card-header 
+        .card-header.d-flex.justify-content-between
             button.btn.btn-outline-primary(data-replace='add-recipes') Add new recipe
-        .card-body.text-center.text-secondary.display-3 some text
+            a.btn.btn-primary(href='/users/logout') Log out
+        .card-body.text-secondary(id='recipes-tab')
         .card-footer 
             nav.d-flex.justify-content-center.text-center(aria-label='Pagination links')
-                ul.pagination 
-                    li.page-item
-                        a.page-link.bg-transparent prev
-                    li.page-item
-                        a.page-link.bg-transparent 1
-                    li.page-item
-                        a.page-link.bg-transparent 2
-                    li.page-item
-                        a.page-link.bg-transparent next
+                ul.pagination(id='pagination')

@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.recipeData = exports.validateRecipe = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
+const user_1 = require("./user");
 const joi_1 = __importDefault(require("joi"));
 const recipeSchema = new mongoose_1.default.Schema({
     title: String,
@@ -28,6 +29,13 @@ const recipeSchema = new mongoose_1.default.Schema({
         required: true,
     }
 }, { timestamps: true });
+recipeSchema.post('save', async function (doc, next) {
+    const rec = await user_1.userData.findById(doc.creator);
+    if (rec) {
+        rec.recipes = rec.recipes + 1;
+    }
+    rec === null || rec === void 0 ? void 0 : rec.save();
+});
 async function validateRecipe(recipe) {
     const schema = joi_1.default.object({
         title: joi_1.default.string().required(),

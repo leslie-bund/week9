@@ -3,6 +3,13 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 const { userData } = require('../../dist/models/user');
 const { recipeData } = require('../../dist/models/recipe');
 
+require('dotenv').config()
+
+// const app = require('../../dist/app');
+// const jwt = require('jsonwebtoken');
+const request = require('supertest');
+
+
 const testUser = {
     email: 'ikeoluwa@decagon.com', 
     fullname: 'Ikeoluwa Idowu', 
@@ -20,6 +27,18 @@ const testRecipe = {
         {"name":"happiness","price":"300"}
     ],
     preparation: "Only the real can recognize...!"
+}
+
+const testLogin = {
+  email: 'ikeoluwa@decagon.com',
+  password: '00000'
+}
+
+const testUser2 = {
+  email: 'ikeoluwa@gmail.com', 
+  fullname: 'Ikeoluwa Idowu', 
+  password: '00000', 
+  confirm_password: '00000'
 }
 
 
@@ -70,4 +89,34 @@ describe('Single MongoMemoryServer', () => {
         expect(recipes).not.toBeNull();
     });
   })
+
+
+  // describe('Testing Signup and Login routes', () => {
+  //   test('User signs up', async () => {
+  //       let response = await request(app)
+  //           .post('/users/signup')
+  //           .send(testUser2)
+  //       expect(response.status).toBe(200);
+  //       expect(response.header).toHaveProperty('set-cookie');
+  //   })
+
+
+  //   test('User Logins in with credentials in mock DB', async () => {
+  //       let response = await request(app)
+  //           .post('/users/login')
+  //           .send(testLogin)
+  //       expect(response.status).toBe(301);
+  //       expect(response.header).toHaveProperty('set-cookie');
+  //   })
+  // })
+
+  // describe("Handles routes that don\'t need auth", () => {
+  //   test('Landing page returns status 200', async () => {
+  //       await request(app).get('/').expect(200);
+  //   })
+  //   test('Logout page returns status 200', async () => {
+  //       let response = await request(app).get('/user/logout');
+  //       expect(response.status).not.toBe(404);
+  //   })
+  // })
 });

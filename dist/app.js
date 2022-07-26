@@ -10,6 +10,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const mongoose_1 = __importDefault(require("mongoose"));
 require("dotenv/config");
+const method_override_1 = __importDefault(require("method-override"));
 const debug_1 = __importDefault(require("debug"));
 const debug = (0, debug_1.default)('week-9-node-task-sq011-poda-leslie-bund:server');
 const index_1 = __importDefault(require("./routes/index"));
@@ -28,6 +29,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
+app.use((0, method_override_1.default)('_method'));
 app.use('/', index_1.default);
 app.use('/users', users_1.default);
 // Insert validation middleware
